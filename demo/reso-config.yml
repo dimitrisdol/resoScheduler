@@ -1,0 +1,45 @@
+apiVersion: kubescheduler.config.k8s.io/v1beta1
+kind: KubeSchedulerConfiguration
+leaderElection:
+  # (Optional) Change true to false if you are not running a HA control-plane.
+  leaderElect: true
+clientConnection:
+  kubeconfig: /etc/kubernetes/scheduler.conf
+profiles:
+- schedulerName: default-scheduler
+  plugins:
+    #queueSort:
+    #  enabled:
+    #  - name: ResoPlugin
+    #  disabled:
+    #  - name: "*"
+    #preFilter:
+    #  enabled:
+    #  - name: ResoPlugin
+    filter:
+      enabled:
+      - name: ResoPlugin
+    #postFilter:
+    #  enabled:
+    #  - name: ResoPlugin
+    #preScore:
+    #  enabled:
+    #  - name: ResoPlugin
+    score:
+      enabled:
+      - name: ResoPlugin
+    #reserve:
+    #  enabled:
+    #  - name: ResoPlugin
+    #permit:
+    #  enabled:
+    #  - name: ResoPlugin
+    #preBind:
+    #  enabled:
+    #  - name: ResoPlugin
+    #bind:
+    #  enabled:
+    #  - name: ResoPlugin
+    #postBind:
+    #  enabled:
+    #  - name: ResoPlugin
