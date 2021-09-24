@@ -1,4 +1,4 @@
-// Package hardcoded contains an implementation of resp.InterferenceModel,
+// Package hardcoded contains an implementation of reso.InterferenceModel,
 // where the slowdowns among all applications are known and hardcoded.
 package hardcoded
 
@@ -28,7 +28,7 @@ func New(resoLabelKey string) *HardcodedSlowDowns {
 	}
 }
 
-// Attack implements random.InterferenceModel; see the documentation there for
+// Attack implements reso.InterferenceModel; see the documentation there for
 // more information.
 func (m *HardcodedSlowDowns) Attack(attacker, occupant *corev1.Pod) (float64, error) {
 	occPodCategory, _ := parseAppCategory(occupant.Labels[m.resoLabelKey])
@@ -121,7 +121,6 @@ func (ac appCategory) attack(occupant appCategory) float64 {
 ///////////////////////////////////////////////////////////////////////////////
 
 // slowDownMatrix is a type alias for internal use in ResoPlugin.
-// Because it is a random algorithm every slowdown is the same.
 type slowDownMatrix map[appCategory]map[appCategory]float64
 
 // slowDowns is a hardcoded global map that represents a dense 2D matrix of the
@@ -156,7 +155,7 @@ var slowDowns = slowDownMatrix{
 		catA: 1.05,
 		catB: 1.02,
 		catC: 2.87,
-		catD: 3.21, // slowdown of catD when attacked by catB = 3.10
+		catD: 3.21, // slowdown of catD when attacked by catB = 3.21
 	},
 	catC: map[appCategory]float64{
 		catA: 1.38,
@@ -165,7 +164,7 @@ var slowDowns = slowDownMatrix{
 		catD: 3.57,
 	},
 	catD: map[appCategory]float64{
-		catA: 1.01,
+		catA: 1.01, // slowdown of catA when attacked by catD = 1.01
 		catB: 2.57,
 		catC: 3.26,
 		catD: 4.56,

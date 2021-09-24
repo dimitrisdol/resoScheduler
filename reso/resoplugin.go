@@ -19,7 +19,7 @@ const (
 
 	// sla is the maximum slowdown that is allowed for an application when
 	// it is being scheduled along another one.
-	sla = 1.5
+	sla = 35
 
 	// resoLabelKey is the key of the Kubernetes Label which every
 	// application that needs to be tracked by ResoPlugin should have.
