@@ -23,7 +23,7 @@ const (
 
 	// resoLabelKey is the key of the Kubernetes Label which every
 	// application that needs to be tracked by ResoPlugin should have.
-	resoLabelKey = "reso"
+	resoLabelKey = "category"
 )
 
 // ResoPlugin is an out-of-tree plugin for the kube-scheduler, which takes into
